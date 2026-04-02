@@ -13,9 +13,9 @@ class GameOfLife{
 	std::string neighbors;
  public:
 	GameOfLife(int width, int height, std::string grid);
-	void next();
-	void nextNGen(int g, int i);
-	void printGame();
+	void NextGen();
+	void NextNGen(int g, int i);
+	void PrintGame();
 	int parseInputs(int argc, char *argv[]);
 	//int inputArgs(int argc, char *argv[]);
 	//int errorCheck(const char* filename);

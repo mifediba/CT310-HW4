@@ -5,11 +5,11 @@ GPP = g++
 GPPFlags = -Wall -Wextra -Werror -Wfatal-errors -std=c++20
 
 # Source and output names
-SRC = your_source_file.cpp 
-HEADER = GameOfLife.h
+SRC = HW4.cpp ErrorCheck.cpp GOLApp.cpp 
+HEADER = GameOfLife.h ErrorCheck.h
 
 HWNUM = HW4
-TARNAME = firstname_lastname
+TARNAME = Marytheresa_Ifediba
 
 # Target name
 TARGET = GOLApp

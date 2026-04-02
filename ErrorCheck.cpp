@@ -24,16 +24,16 @@ int ErrorCheck::inputArgs(int argc, char *argv[]){
 		GameOfLife game1(getDimension(argv[1], 0), getDimension(argv[1], 1), getGrid(argv[1]));
       		if (argc ==  2){
 			for (int i = 0; i < 10; i++){
-				game1.printGame();
-				game1.next();
+				game1.PrintGame();
+				game1.NextGen();
 			}
-			game1.printGame();
+			game1.PrintGame();
 		}
 		else if (argc == 3){
-			game1.nextNGen(std::stoi(argv[2]), 1);
+			game1.NextNGen(std::stoi(argv[2]), 1);
 		}
 		else if (argc == 4){
-			game1.nextNGen(std::stoi(argv[2]), std::stoi(argv[3]));
+			game1.NextNGen(std::stoi(argv[2]), std::stoi(argv[3]));
 		}
 	}
 	return 0;
@@ -148,10 +148,3 @@ int ErrorCheck::errorCheck(const char* filename){
         }
         return 0;
 }
-int main(int argc, char *argv[]){
-        ErrorCheck game1(argc, argv);
-        int result = game1.inputArgs(argc, argv);
-
-        return result;
-}
-

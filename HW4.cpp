@@ -8,7 +8,7 @@
 
 GameOfLife::GameOfLife(int width, int height, std::string grid):width(width), height(height), grid(grid), interval(0), generation(0), neighbors("ABC"){}
 
-void GameOfLife::next(){
+void GameOfLife::NextGen(){
 	int loopcounter = 0;
 	int row, column;
 	int nar, nac;
@@ -75,7 +75,7 @@ void GameOfLife::next(){
 	grid = new_grid; //replace current grid with newly calculated grid
 	generation++; //increment up generation
 }
-void GameOfLife::nextNGen(int g, int i){
+void GameOfLife::NextNGen(int g, int i){
 	//nextNGen function takes input:
 	//integer g = generations
 	//integer i = interval
@@ -84,14 +84,14 @@ void GameOfLife::nextNGen(int g, int i){
 	if (g > 0){
 		for (int j = 0; j < g; j++){
 			if (j % i == 0){
-				printGame();
+				PrintGame();
 			}
-			next();
+			NextGen();
 		}
 	}
-	printGame();
+	PrintGame();
 }
-void GameOfLife::printGame() {
+void GameOfLife::PrintGame() {
 	int loopcounter = 0;
 	std::cout << "Generation: " << generation << std::endl;
 	for (char t : grid){

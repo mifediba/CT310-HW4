@@ -10,15 +10,23 @@ class GameOfLife{
 	std::string grid;
 	int interval;
 	int generation;
-	std::string neighbors;
+	std::string neighbors;	
+	
  public:
+	//Constructors
+	GameOfLife(std::string filename);
 	GameOfLife(int width, int height, std::string grid);
+
+	GameOfLife(const GameOfLife&);
+	GameOfLife& operator=(const GameOfLife&);
+	~GameOfLife();
+
 	void NextGen();
 	void NextNGen(int g, int i);
-	void PrintGame();
-	int parseInputs(int argc, char *argv[]);
-	//int inputArgs(int argc, char *argv[]);
-	//int errorCheck(const char* filename);
+	void PrintGame() const;
+	void ToggleCell(int index);
+	void ToggleCell(int row, int col);;
 
+	//int parseInputs(int argc, char *argv[]);
 };
 #endif //GAMEOFLIFE_H

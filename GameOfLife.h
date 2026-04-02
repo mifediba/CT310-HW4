@@ -5,12 +5,14 @@
 #include <string>
 
 class GameOfLife{
+private:
 	int width;
 	int height;
 	std::string grid;
 	int interval;
 	int generation;
 	std::string neighbors;	
+	int ErrorCheck(std::string filename);
 
  public:
 	GameOfLife(std::string filename);
@@ -24,6 +26,7 @@ class GameOfLife{
 	void PrintGame() const;
 	void ToggleCell(int index);
 	void ToggleCell(int row, int col);
+
 
 	//int parseInputs(int argc, char *argv[]);
 };

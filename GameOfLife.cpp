@@ -138,7 +138,10 @@
     void GameOfLife::ToggleCell(int index){
         int size = grid.size();;
         char cell = grid.at(index);
-        if (index >= 0 && index < size){
+        if (index < 0 || index >= size){
+            throw std::out_of_range("Index out of bounds.\n");
+        }
+        else{
             if (cell == '0'){
                 grid.at(index) = '1';
             }
@@ -146,10 +149,7 @@
                 grid.at(index) = '0';
             }
         }
-        else{
-            throw std::out_of_range("Index out of bounds.\n");
-        }
-        std::cout << "Toggle Cell index" << index << " " << grid.at(index) << std::endl;
+        //std::cout << "Toggle Cell index" << index << " " << grid.at(index) << std::endl;
     }
     void GameOfLife::ToggleCell(int row, int col){
         if (row < 0 || row >= height){
@@ -162,7 +162,7 @@
             int index = (row * width) + col;
             ToggleCell(index);
         }
-        std::cout << "Toggle Cell row/column" << row << " " << col << std::endl;
+        //std::cout << "Toggle Cell row/column" << row << " " << col << std::endl;
     }
     GameOfLife& GameOfLife::operator+=(int gens){
         if (gens > 0){

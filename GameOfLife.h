@@ -9,7 +9,6 @@ private:
 	int width;
 	int height;
 	std::string grid;
-	int interval;
 	int generation;
 	std::string neighbors;	
 	void FileErrorCheck(std::string filename);

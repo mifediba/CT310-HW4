@@ -7,24 +7,21 @@
 #include <stdexcept>
 
 	//Constructor with filename input
-	GameOfLife::GameOfLife(std::string filename){
+	GameOfLife::GameOfLife(std::string filename): generation(0){
         FileErrorCheck(filename); 
         FileContentCheck(filename);
         int width = GetDimension(filename, 0);
         int height = GetDimension(filename, 1);
         std::string grid = GetGrid(filename);
-        int interval = 0;
-        int generation = 0;
-        std::cout << "Width: " << width << " Height: " << height << " Grid: " << grid << " Interval: " << interval << " Generation: " << generation << std::endl;
+        std::cout << "Width: " << width << " Height: " << height << " Grid: " << grid  << " Generation: " << generation << std::endl;
     }
     //Constructor with dimensions and game board input
-    GameOfLife::GameOfLife(int width, int height, std::string grid):width(width), height(height), grid(grid), interval(0), generation(0){}
+    GameOfLife::GameOfLife(int width, int height, std::string grid):width(width), height(height), grid(grid), generation(0){}
     //Copy constructor
 	GameOfLife::GameOfLife(const GameOfLife& sourcegame){
         this->width = sourcegame.width;
         this->height = sourcegame.height;
         this->grid = sourcegame.grid;
-        this->interval = sourcegame.interval;
         this->generation = sourcegame.generation;
     }   
     //Assignment operator
@@ -32,7 +29,6 @@
         this->width = sourcegame.width;
         this->height = sourcegame.height;
         this->grid = sourcegame.grid;
-        this->interval = sourcegame.interval;
         this->generation = sourcegame.generation;
         return *this;
     }

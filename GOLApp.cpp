@@ -28,9 +28,11 @@ int main(int argc, char** argv){
       GameOfLife game2 = game1 + 2;
       game2.PrintGame();
       game1.PrintGame();
-      game1.ToggleCell(-3);
+      game1.ToggleCell(3);
       game1.PrintGame();
-      game1.ToggleCell(0, 0);
+      game1.ToggleCell(0, 1);
+      game1.PrintGame();
+      game1.ToggleCell(0, 1);
       game1.PrintGame();
 
       //game1.PrintGame();

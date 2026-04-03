@@ -39,8 +39,7 @@
         return *this;
     }
 	//Destrictor
-    GameOfLife::~GameOfLife(){
-    };
+    GameOfLife::~GameOfLife() = default;
 
 
     void GameOfLife::NextGen(){
@@ -127,11 +126,11 @@
         int loopcounter = 0;
         std::cout << "Generation: " << generation << std::endl;
         for (char t : grid){
-                    loopcounter++;
-                    std::cout << t;
-                    if (loopcounter % width == 0){
-                            std::cout <<"\n";
-                    }
+                loopcounter++;
+                std::cout << t;
+                if (loopcounter % width == 0){
+                        std::cout <<"\n";
+                }
             }
         //std::cout<<"Generation: " << grid << std::endl;
     }
@@ -149,6 +148,7 @@
                 grid.at(index) = '0';
             }
         }
+        generation++;
         //std::cout << "Toggle Cell index" << index << " " << grid.at(index) << std::endl;
     }
     void GameOfLife::ToggleCell(int row, int col){

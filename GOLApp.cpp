@@ -17,7 +17,7 @@ int main(int argc, char** argv){
    // int result = game1.inputArgs(argc, argv);
 //	return result;
    try{
-      GameOfLife game1("2x2.txt");
+      GameOfLife game1 = GameOfLife("2x2.txt");
       game1.NextGen();
       game1.PrintGame();
       game1.NextGen();

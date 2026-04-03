@@ -8,11 +8,17 @@
 
 	//Constructor with filename input
 	GameOfLife::GameOfLife(std::string filename): generation(0){
+        int w, h;
+        std::string g;
         FileErrorCheck(filename); 
         FileContentCheck(filename);
-        int width = GetDimension(filename, 0);
-        int height = GetDimension(filename, 1);
-        std::string grid = GetGrid(filename);
+        w = GetDimension(filename, 0);
+        h = GetDimension(filename, 1);
+        g = GetGrid(filename);
+
+        this->width = w;
+        this->height = h;
+        this->grid = g;
         std::cout << "Width: " << width << " Height: " << height << " Grid: " << grid  << " Generation: " << generation << std::endl;
     }
     //Constructor with dimensions and game board input

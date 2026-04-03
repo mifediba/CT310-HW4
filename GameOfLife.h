@@ -28,6 +28,7 @@ private:
 	void PrintGame() const;
 	void ToggleCell(int index);
 	void ToggleCell(int row, int col);
+	GameOfLife& operator+=(int gens);
 
 
 	//int parseInputs(int argc, char *argv[]);

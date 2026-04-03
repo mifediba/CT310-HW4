@@ -113,14 +113,12 @@
         grid = new_grid; //replace current grid with newly calculated grid
         generation++; //increment up generation
     }
-    void GameOfLife::NextNGen(int gen){
+    void GameOfLife::NextNGen(int gens){
         //nextNGen function takes input:
         //integer g = generations
-        //integer i = interval
-
         //and prints the game board at generation g
-        if (gen > 0){
-            for (int j = 0; j < gen; j++){
+        if (gens > 0){
+            for (int j = 0; j < gens; j++){
                 NextGen();
                 PrintGame(); 
             }
@@ -144,6 +142,11 @@
     void GameOfLife::ToggleCell(int row, int col){
         std::cout << "Toggle Cell row/column" << row << " " << col << std::endl;
     }
+    GameOfLife& GameOfLife::operator+=(int gens){
+        NextNGen(gens);
+        return *this;
+    }
+    
     void GameOfLife::FileErrorCheck(std::string filename){
         std::ifstream filein;
         filein.open(filename);

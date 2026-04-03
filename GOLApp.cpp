@@ -22,6 +22,8 @@ int main(int argc, char** argv){
       game1.NextGen();
       game1+=9;
       game1.PrintGame();
+      ++game1;
+      game1.PrintGame();
       //game1.PrintGame();
       //game1.NextGen();
       //game1.PrintGame();

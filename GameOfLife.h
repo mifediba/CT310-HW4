@@ -29,6 +29,7 @@ private:
 	void ToggleCell(int index);
 	void ToggleCell(int row, int col);
 	GameOfLife& operator+=(int gens);
+	GameOfLife& operator++();
 
 
 	//int parseInputs(int argc, char *argv[]);

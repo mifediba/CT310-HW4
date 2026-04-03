@@ -145,7 +145,10 @@
         NextNGen(gens);
         return *this;
     }
-    
+    GameOfLife& GameOfLife::operator++(){
+        NextGen();
+        return *this;
+    }
     void GameOfLife::FileErrorCheck(std::string filename){
         std::ifstream filein;
         filein.open(filename);

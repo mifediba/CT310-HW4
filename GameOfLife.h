@@ -12,7 +12,8 @@ private:
 	int interval;
 	int generation;
 	std::string neighbors;	
-	int ErrorCheck(std::string filename);
+	void ErrorCheck(std::string filename);
+	std::string GetGrid(std::string filename);
 
  public:
 	GameOfLife(std::string filename);

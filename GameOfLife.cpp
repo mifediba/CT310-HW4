@@ -4,13 +4,15 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
+#include <stdexcept>
 
 	//Constructor with filename input
 	GameOfLife::GameOfLife(std::string filename){
         ErrorCheck(filename);
+        
     }
     //Constructor with dimensions and game board input
-    GameOfLife::GameOfLife(int width, int height, std::string grid):width(width), height(height), grid(grid), interval(0), generation(0), neighbors("ABC"){
+    GameOfLife::GameOfLife(int width, int height, std::string grid):width(width), height(height), grid(grid), interval(0), generation(0){
 
     }
     //Copy constructor
@@ -20,7 +22,6 @@
         this->grid = sourcegame.grid;
         this->interval = sourcegame.interval;
         this->generation = sourcegame.generation;
-        this->neighbors = sourcegame.neighbors;
     }   
     //Assignment operator
 	GameOfLife& GameOfLife::operator=(const GameOfLife& sourcegame){
@@ -29,7 +30,6 @@
         this->grid = sourcegame.grid;
         this->interval = sourcegame.interval;
         this->generation = sourcegame.generation;
-        this->neighbors = sourcegame.neighbors;
         return *this;
     }
 	//Destrictor
@@ -43,6 +43,7 @@
         int neighbor_row, neighbor_col;
         int num_live_neighbors = 0;
         int num_dead_neighbors = 0;
+        std::string neighbors = "ABC";
         std::string new_grid ="";
         for (char t : grid){//looping through each character in the grid
             row = loopcounter / width; //defining the width of the grid based on file width input
@@ -50,7 +51,7 @@
             for (char nr : neighbors){ //neighbor row adjustment
                 for (char nc : neighbors) {
                     if (nr == 'A' && nc == 'A'){//current cell
-                        //skip adjustment to current cell
+                        continue;
                     }
                     else{ //loop through 8 possible neighbor cell coordinates based on their proximity to current cell 
                         if (nr == 'A'){
@@ -137,14 +138,14 @@
     void GameOfLife::ToggleCell(int row, int col){
         std::cout << "Toggle Cell row/column" << row << " " << col << std::endl;
     }
-    int GameOfLife::ErrorCheck(std::string filename){
+    void GameOfLife::ErrorCheck(std::string filename){
         int counter = 0;
         int row_counter = 0;
         std::ifstream filein;
         filein.open(filename);
         if (!filein){
-            std::cerr << "File does not exist\n";
-            return 1;
+            //std::cerr << "File does not exist\n";
+            throw std::invalid_argument("File does not exist.\n");
         }
         else{
             filein >> std::ws;
@@ -153,8 +154,8 @@
             std::vector<char> values;
             if (filein.tellg() != 0)
             {
-                std::cerr << "File is empty\n";
-                return 2;
+                throw std::invalid_argument("File is empty.\n");
+
             }
             while (std::getline(filein, line)){
                 std::stringstream linestring(line);
@@ -162,14 +163,12 @@
                     int d;
                     while (linestring >> d){
                         if (d == 0){
-                            std::cout << "Invalid input dimensions\n";
-                            return 0;
+                            throw std::invalid_argument("Invalid input dimensions.\n");
                         }
                         dimensions.push_back(d);
                     }
                     if (dimensions.size() != 2){
-                        std::cerr << "Incorrect number of input dimensions\n";
-                        return 2;
+                        throw std::invalid_argument("Incorrect number of input dimensions.\n");
                     }
                 }
                 else{
@@ -177,8 +176,7 @@
                     for (char v : line){
                         if (v != ' '){
                             if (v != 'X' && v != 'O'){
-                                std::cerr << "Error: Invalid character, line " << counter + 1 << std::endl;
-                                return counter + 2;
+                                throw std::invalid_argument("Error: Invalid character, line " + std::to_string(counter + 1) + ".\n");
                             }
                             column_counter++;
                             if (v == 'X'){
@@ -195,20 +193,36 @@
                         continue;
                     }
                     else if (column_counter != dimensions.back()) {
-                        std::cerr << "Error: Incorrect number of columns, line " << counter + 1 << std::endl;
-                        return counter + 2;
+                        throw std::invalid_argument("Error: Incorrect number of columns, line " + std::to_string(counter + 1) + ".\n");
                     }
                     else if (counter > dimensions.front()) {
-                        std::cerr << "Error: Incorrect number of rows, line " << counter + 1 << std::endl;
-                        return counter + 2;
+                        throw std::invalid_argument("Error: Incorrect number of rows, line " + std::to_string(counter + 1) + ".\n");
                     }
                 }
                 counter++;
             }
             if (row_counter != dimensions.front()){
-                std::cerr << "Error: Incorrect number of rows, line " << counter + 1 << std::endl;
-                return counter + 2;
+                throw std::invalid_argument("Error: Incorrect number of rows, line " + std::to_string(counter + 1) + ".\n");
             }
         }
-        return 0;
+    }
+    std::string GameOfLife::GetGrid(std::string filename){
+        std::string grid;
+        std::ifstream filein;
+        filein.open(filename);
+        filein >> std::ws;
+        std::string line;
+        while(std::getline(filein, line)){
+            for (char c : line){
+                if (c == 'X'){
+                    grid += "0";
+                }
+                else if (c == 'O'){
+                    grid += "1";
+                }
+            }
+        //	std::stringstream gridvalues(line);
+        //	std::cout>> gridvalues >> std::endl;
+        }
+	    return grid;
     }

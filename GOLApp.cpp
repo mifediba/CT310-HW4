@@ -30,6 +30,8 @@ int main(int argc, char** argv){
       game1.PrintGame();
       game1.ToggleCell(3);
       game1.PrintGame();
+      game1.ToggleCell(0, 3);
+      game1.PrintGame();
 
       //game1.PrintGame();
       //game1.NextGen();

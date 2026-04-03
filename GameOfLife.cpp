@@ -150,6 +150,17 @@
         }
         return *this;
     }
+    GameOfLife GameOfLife::operator+(int gens) const{
+        if (gens > 0){
+            GameOfLife newGame = *this;
+            newGame.NextNGen(gens);
+            return newGame;
+        }
+        else{
+            throw std::invalid_argument("Negative generation not permitted.\n");
+        }
+
+    }
     GameOfLife& GameOfLife::operator++(){
         NextGen();
         return *this;

@@ -19,11 +19,16 @@ int main(int argc, char** argv){
    try{
       //Make game1
       GameOfLife game1("blinker.txt");
-      game1.NextGen();
-      game1+=-2;
+      game1.PrintGame();
+      //game1.NextGen();
+      game1+=2;
       game1.PrintGame();
       ++game1;
       game1.PrintGame();
+      GameOfLife game2 = game1 + 2;
+      game2.PrintGame();
+      game1.PrintGame();
+
       //game1.PrintGame();
       //game1.NextGen();
       //game1.PrintGame();

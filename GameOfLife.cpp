@@ -136,7 +136,20 @@
         //std::cout<<"Generation: " << grid << std::endl;
     }
     void GameOfLife::ToggleCell(int index){
-        std::cout << "Toggle Cell index" << index << std::endl;
+        int size = grid.size();;
+        char cell = grid.at(index);
+        if (index == 0 && index < size){
+            if (cell == '0'){
+                grid.at(index) = '1';
+            }
+            else{
+                grid.at(index) = '0';
+            }
+        }
+        else{
+            throw std::out_of_range("Index out of bounds.\n");
+        }
+        std::cout << "Toggle Cell index" << index << " " << grid.at(index) << std::endl;
     }
     void GameOfLife::ToggleCell(int row, int col){
         std::cout << "Toggle Cell row/column" << row << " " << col << std::endl;
@@ -180,7 +193,6 @@
             if (filein.tellg() != 0)
             {
                 throw std::invalid_argument("File is empty.\n");
-
             }
         }
     }

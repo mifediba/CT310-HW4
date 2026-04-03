@@ -28,6 +28,8 @@ int main(int argc, char** argv){
       GameOfLife game2 = game1 + 2;
       game2.PrintGame();
       game1.PrintGame();
+      game1.ToggleCell(-1);
+      game1.PrintGame();
 
       //game1.PrintGame();
       //game1.NextGen();
@@ -64,9 +66,13 @@ int main(int argc, char** argv){
    	 //so we don't get unused variable warning
       std::cout << argv[argc-1] << std::endl;
    }
+   catch (std::out_of_range& e){
+      std::cerr << "Out of range error: " << e.what() <<std::endl;
+   }
    catch (std::invalid_argument& e){   
       std::cerr << e.what() <<std::endl;
    }
+
 	return 0;
 }
 

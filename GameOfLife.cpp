@@ -142,7 +142,12 @@
         std::cout << "Toggle Cell row/column" << row << " " << col << std::endl;
     }
     GameOfLife& GameOfLife::operator+=(int gens){
-        NextNGen(gens);
+        if (gens > 0){
+            NextNGen(gens);
+        }
+        else{
+            throw std::invalid_argument("Negative generation not permitted.\n");
+        }
         return *this;
     }
     GameOfLife& GameOfLife::operator++(){

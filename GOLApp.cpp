@@ -22,6 +22,10 @@ int main(int argc, char** argv){
       game1.PrintGame();
       game1.NextGen();
       game1.PrintGame();
+      GameOfLife game2 = game1;
+      game2.NextGen();
+      game2.PrintGame();
+      game1.PrintGame();
       //GameOfLife game2(5, 4, "00000000100010100010"); 
       //game2.NextGen();
       //game2.PrintGame();

@@ -8,13 +8,17 @@
 
 	//Constructor with filename input
 	GameOfLife::GameOfLife(std::string filename){
-        ErrorCheck(filename);
-        
+        FileErrorCheck(filename); 
+        FileContentCheck(filename);
+        int width = GetDimension(filename, 0);
+        int height = GetDimension(filename, 1);
+        std::string grid = GetGrid(filename);
+        int interval = 0;
+        int generation = 0;
+        std::cout << "Width: " << width << " Height: " << height << " Grid: " << grid << " Interval: " << interval << " Generation: " << generation << std::endl;
     }
     //Constructor with dimensions and game board input
-    GameOfLife::GameOfLife(int width, int height, std::string grid):width(width), height(height), grid(grid), interval(0), generation(0){
-
-    }
+    GameOfLife::GameOfLife(int width, int height, std::string grid):width(width), height(height), grid(grid), interval(0), generation(0){}
     //Copy constructor
 	GameOfLife::GameOfLife(const GameOfLife& sourcegame){
         this->width = sourcegame.width;
@@ -33,7 +37,8 @@
         return *this;
     }
 	//Destrictor
-    GameOfLife::~GameOfLife() = default;
+    GameOfLife::~GameOfLife(){
+    };
 
 
     void GameOfLife::NextGen(){
@@ -45,6 +50,7 @@
         int num_dead_neighbors = 0;
         std::string neighbors = "ABC";
         std::string new_grid ="";
+        std::cout << "Current grid: **" << grid << std::endl;
         for (char t : grid){//looping through each character in the grid
             row = loopcounter / width; //defining the width of the grid based on file width input
             column = loopcounter % width; //defining length of the grid based on file width input
@@ -101,24 +107,22 @@
             num_dead_neighbors = 0; //reset dead cell count
             num_live_neighbors = 0; //reset live cell count
         }
+        std::cout << "New grid: ***" << new_grid << std::endl;
         grid = new_grid; //replace current grid with newly calculated grid
         generation++; //increment up generation
     }
-    void GameOfLife::NextNGen(int g, int i){
+    void GameOfLife::NextNGen(int gen){
         //nextNGen function takes input:
         //integer g = generations
         //integer i = interval
 
         //and prints the game board at generation g
-        if (g > 0){
-            for (int j = 0; j < g; j++){
-                if (j % i == 0){
-                    PrintGame();
-                }
+        if (gen > 0){
+            for (int j = 0; j < gen; j++){
                 NextGen();
+                PrintGame(); 
             }
         }
-        PrintGame();
     }
     void GameOfLife::PrintGame() const{
         int loopcounter = 0;
@@ -138,9 +142,7 @@
     void GameOfLife::ToggleCell(int row, int col){
         std::cout << "Toggle Cell row/column" << row << " " << col << std::endl;
     }
-    void GameOfLife::ErrorCheck(std::string filename){
-        int counter = 0;
-        int row_counter = 0;
+    void GameOfLife::FileErrorCheck(std::string filename){
         std::ifstream filein;
         filein.open(filename);
         if (!filein){
@@ -157,7 +159,17 @@
                 throw std::invalid_argument("File is empty.\n");
 
             }
-            while (std::getline(filein, line)){
+        }
+    }
+    void GameOfLife::FileContentCheck(std::string filename){
+        int counter = 0;
+        int row_counter = 0;
+        std::ifstream filein;
+        std::string line;
+        std::vector<int> dimensions;
+        std::vector<char> values;
+        filein.open(filename);
+        while (std::getline(filein, line)){
                 std::stringstream linestring(line);
                 if (counter == 0){
                     int d;
@@ -204,7 +216,6 @@
             if (row_counter != dimensions.front()){
                 throw std::invalid_argument("Error: Incorrect number of rows, line " + std::to_string(counter + 1) + ".\n");
             }
-        }
     }
     std::string GameOfLife::GetGrid(std::string filename){
         std::string grid;
@@ -226,3 +237,19 @@
         }
 	    return grid;
     }
+    int GameOfLife::GetDimension(std::string filename, int dimension){
+	std::ifstream filein;
+	filein.open(filename);
+	filein >> std::ws;
+	std::string dimensionline;
+	std::getline(filein, dimensionline);
+	std::stringstream integerstream(dimensionline); //select first dimension inputted in file 
+	int height, width;
+	integerstream >> height >> width;
+	if (dimension == 0){
+		return width;
+	}
+	else{
+		return height;
+	}
+}

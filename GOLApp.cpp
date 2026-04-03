@@ -22,7 +22,7 @@ int main(int argc, char** argv){
       GameOfLife game1(3, 3, "000000000"); 
 
       //game1.PrintGame();
-      //game1.NextGen();
+      game1.NextNGen(-1);
       //game1+=2;
       //game1.PrintGame();
       //++game1;

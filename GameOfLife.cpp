@@ -123,6 +123,9 @@
                 NextGen();
             }
         }
+        else{
+            throw std::invalid_argument("Negative generation not allowed.\n");
+        }
     }
     void GameOfLife::PrintGame() const{
         int loopcounter = 0;
@@ -150,7 +153,6 @@
                 grid.at(index) = '0';
             }
         }
-        generation++;
         //std::cout << "Toggle Cell index" << index << " " << grid.at(index) << std::endl;
     }
     void GameOfLife::ToggleCell(int row, int col){

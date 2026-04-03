@@ -15,10 +15,7 @@ TARNAME = Marytheresa_Ifediba
 TARGET = GOLApp
 
 # Compile
-$(TARGET): $(SRC) $(HEADER)
-	$(GPP) $(GPPFlags) $(SRC) -o $(TARGET)
-
-$(HWNUM).a: $(SRC)
+$(HWNUM).a: GameOfLife.o
 	ar -rcs $(HWNUM).a $^
 	rm $^
 

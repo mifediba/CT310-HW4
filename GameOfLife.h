@@ -13,6 +13,7 @@ private:
 	std::string neighbors;	
 	void FileErrorCheck(std::string filename);
 	void FileContentCheck(std::string filename);
+	void InputContentCheck(int width, int height, std::string grid);
 	std::string GetGrid(std::string filename);
 	int GetDimension(std::string filename, int dimension);
 

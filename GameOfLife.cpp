@@ -22,7 +22,9 @@
         //std::cout << "Width: " << width << " Height: " << height << " Grid: " << grid  << " Generation: " << generation << std::endl;
     }
     //Constructor with dimensions and game board input
-    GameOfLife::GameOfLife(int width, int height, std::string grid):width(width), height(height), grid(grid), generation(0){}
+    GameOfLife::GameOfLife(int width, int height, std::string grid):width(width), height(height), grid(grid), generation(0){
+        InputContentCheck(width, height, grid);
+    }
     //Copy constructor
 	GameOfLife::GameOfLife(const GameOfLife& sourcegame){
         this->width = sourcegame.width;
@@ -261,6 +263,23 @@
             if (row_counter != dimensions.front()){
                 throw std::invalid_argument("Error: Incorrect number of rows, line " + std::to_string(counter + 1) + ".\n");
             }
+    }
+    void GameOfLife::InputContentCheck(int width, int height, std::string grid){
+        int size = grid.size();
+        if (width <= 0 || height <= 0){
+            throw std::invalid_argument("Invalid input dimensions.\n");
+        }
+        else if (size != width * height){
+            throw std::invalid_argument("Invalid input dimensions.\n");
+        }
+        else if (size == 0){
+            throw std::invalid_argument("Invalid grid.\n");
+        }
+        for (char c : grid){
+            if (c != '0' && c != '1'){
+                throw std::invalid_argument("Invalid character in grid input.\n");
+            }
+        }
     }
     std::string GameOfLife::GetGrid(std::string filename){
         std::string grid;

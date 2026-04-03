@@ -18,22 +18,24 @@ int main(int argc, char** argv){
 //	return result;
    try{
       //Make game1
-      GameOfLife game1("blinker.txt");
-      game1.PrintGame();
+      //GameOfLife game1("blinker.txt");
+      GameOfLife game1(3, 3, "000000000"); 
+
+      //game1.PrintGame();
       //game1.NextGen();
-      game1+=2;
+      //game1+=2;
+      //game1.PrintGame();
+      //++game1;
+      //game1.PrintGame();
+      //GameOfLife game2 = game1 + 2;
+      //game2.PrintGame();
+      //game1.PrintGame();
+      //game1.ToggleCell(3);
+      //game1.PrintGame();
+      game1.ToggleCell(1, 1);
       game1.PrintGame();
-      ++game1;
-      game1.PrintGame();
-      GameOfLife game2 = game1 + 2;
-      game2.PrintGame();
-      game1.PrintGame();
-      game1.ToggleCell(3);
-      game1.PrintGame();
-      game1.ToggleCell(0, 1);
-      game1.PrintGame();
-      game1.ToggleCell(0, 1);
-      game1.PrintGame();
+      //game1.ToggleCell(0, 1);
+      //game1.PrintGame();
 
       //game1.PrintGame();
       //game1.NextGen();

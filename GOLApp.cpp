@@ -17,13 +17,16 @@ int main(int argc, char** argv){
    // int result = game1.inputArgs(argc, argv);
 //	return result;
    try{
+      //Make game1
       GameOfLife game1("blinker.txt");
       game1.NextGen();
+      game1+=9;
       game1.PrintGame();
-      game1.NextGen();
-      game1.PrintGame();
-      game1.NextGen();
-      game1.PrintGame();
+      //game1.PrintGame();
+      //game1.NextGen();
+      //game1.PrintGame();
+      //game1.NextGen();
+      //game1.PrintGame();
 
       //Test copy constructor
       //GameOfLife game2 = game1;
@@ -42,14 +45,14 @@ int main(int argc, char** argv){
       //game1.PrintGame();
       //game2.PrintGame();
       //
- 
-      GameOfLife game2(3,5,"000111000000000");
-      game2.NextGen();
-      game2.PrintGame();
-      game2.NextGen();
-      game2.PrintGame();
-      game2.NextGen();
-      game2.PrintGame();
+      //Make game2
+      //GameOfLife game2(3,5,"000111000000000");
+      //game2.NextGen();
+      //game2.PrintGame();
+      //game2.NextGen();
+      //game2.PrintGame();
+      //game2.NextGen();
+      //game2.PrintGame();
       
    	 //so we don't get unused variable warning
       std::cout << argv[argc-1] << std::endl;

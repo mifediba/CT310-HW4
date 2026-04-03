@@ -19,7 +19,7 @@
         this->width = w;
         this->height = h;
         this->grid = g;
-        std::cout << "Width: " << width << " Height: " << height << " Grid: " << grid  << " Generation: " << generation << std::endl;
+        //std::cout << "Width: " << width << " Height: " << height << " Grid: " << grid  << " Generation: " << generation << std::endl;
     }
     //Constructor with dimensions and game board input
     GameOfLife::GameOfLife(int width, int height, std::string grid):width(width), height(height), grid(grid), generation(0){}
@@ -52,7 +52,7 @@
         int num_dead_neighbors = 0;
         std::string neighbors = "ABC";
         std::string new_grid ="";
-        std::cout << "Current grid: **" << grid << std::endl;
+        //std::cout << "Current grid: **" << grid << std::endl;
         for (char t : grid){//looping through each character in the grid
             row = loopcounter / width; //defining the width of the grid based on file width input
             column = loopcounter % width; //defining length of the grid based on file width input
@@ -109,7 +109,7 @@
             num_dead_neighbors = 0; //reset dead cell count
             num_live_neighbors = 0; //reset live cell count
         }
-        std::cout << "New grid: ***" << new_grid << std::endl;
+        //std::cout << "New grid: ***" << new_grid << std::endl;
         grid = new_grid; //replace current grid with newly calculated grid
         generation++; //increment up generation
     }
@@ -120,7 +120,6 @@
         if (gens > 0){
             for (int j = 0; j < gens; j++){
                 NextGen();
-                PrintGame(); 
             }
         }
     }

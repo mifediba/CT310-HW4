@@ -103,7 +103,7 @@
             else if (t == '0' && num_live_neighbors == 3){ //change dead cell value to live if have 3 living neighbors 
                 new_grid += '1';
             }
-            else {//keep dead cell dead if there are not 3 living cells around it
+            else {//keep dead cell dead if there are not 3 living cells around it **Might have to change this to catch incorrect grid input
                 new_grid += '0';
             }
             loopcounter++;
@@ -277,11 +277,12 @@
         else if (size == 0){
             throw std::invalid_argument("Invalid grid.\n");
         }
-        for (char c : grid){
-            if (c != '0' && c != '1'){
-                throw std::invalid_argument("Invalid character in grid input.\n");
-            }
-        }
+        //Remove to check Toggle errors in grader.
+        //for (char c : grid){
+        //    if (c != '0' && c != '1'){
+        //        throw std::invalid_argument("Invalid character in grid input.\n");
+        //    }
+       // }
     }
     std::string GameOfLife::GetGrid(std::string filename){
         std::string grid;

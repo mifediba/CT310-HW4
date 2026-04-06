@@ -9,12 +9,14 @@ private:
 	int width;
 	int height;
 	std::string grid;
+	std::string board;
 	int generation;
 	std::string neighbors;	
 	void FileErrorCheck(std::string filename);
 	void FileContentCheck(std::string filename);
 	void InputContentCheck(int width, int height, std::string grid);
 	std::string GetGrid(std::string filename);
+	std::string GetGridDirect(std::string board);
 	int GetDimension(std::string filename, int dimension);
 
  public:

@@ -19,10 +19,10 @@ int main(int argc, char** argv){
    try{
       //Make game1
       //GameOfLife game1("blinker.txt");
-      GameOfLife game1(3, 3, "1000X0000"); 
+      GameOfLife game1(3, 3, "XOXXOXXOX"); 
 
       game1.PrintGame();
-       game1.NextNGen(1);
+      game1.NextNGen(1);
       //game1+=-2;
       game1.PrintGame();
       ++game1;
@@ -32,7 +32,6 @@ int main(int argc, char** argv){
       //game1.PrintGame();
       //game1.ToggleCell(3);
       //game1.PrintGame();
-      std::cout << "Test" <<  std::endl;
       game1.ToggleCell(1, 1);
       game1.PrintGame();
       game1.ToggleCell(1, 1);
@@ -41,8 +40,9 @@ int main(int argc, char** argv){
       game1.PrintGame();
       game2.ToggleCell(0, 0);
       game2.PrintGame();
+      GameOfLife game3("blinker.txt");
 
-      //game1.PrintGame();
+      game3.PrintGame();
       //game1.NextGen();
       //game1.PrintGame();
       //game1.NextGen();

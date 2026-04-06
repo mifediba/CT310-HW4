@@ -22,8 +22,12 @@
         //std::cout << "Width: " << width << " Height: " << height << " Grid: " << grid  << " Generation: " << generation << std::endl;
     }
     //Constructor with dimensions and game board input
-    GameOfLife::GameOfLife(int width, int height, std::string grid):width(width), height(height), grid(grid), generation(0){
-        InputContentCheck(width, height, grid);
+    GameOfLife::GameOfLife(int width, int height, std::string board):width(width), height(height), board(board), generation(0){
+        std::string g;
+        InputContentCheck(width, height, board);
+        g = GetGridDirect(board);
+        this->grid = g;
+        std::cout << " Grid: " << board << std::endl;
     }
     //Copy constructor
 	GameOfLife::GameOfLife(const GameOfLife& sourcegame){
@@ -278,11 +282,11 @@
             throw std::invalid_argument("Invalid grid.\n");
         }
         //Remove to check Toggle errors in grader.
-        //for (char c : grid){
-        //    if (c != '0' && c != '1'){
-        //        throw std::invalid_argument("Invalid character in grid input.\n");
-        //    }
-       // }
+        for (char c : grid){
+            if (c != 'O' && c != 'X'){
+                throw std::invalid_argument("Invalid character in grid input.\n");
+            }
+        }
     }
     std::string GameOfLife::GetGrid(std::string filename){
         std::string grid;
@@ -302,6 +306,21 @@
         //	std::stringstream gridvalues(line);
         //	std::cout>> gridvalues >> std::endl;
         }
+	    return grid;
+    }
+       std::string GameOfLife::GetGridDirect(std::string board){
+        std::string grid;
+        for (char c : board){
+                //std::cout << "Board character: " << c << std::endl;
+                if (c == 'X'){
+                    grid += "0";
+                }
+                else if (c == 'O'){
+                    grid += "1";
+                }
+            }
+        //	std::stringstream gridvalues(line);
+        //	std::cout>> gridvalues >> std::endl;
 	    return grid;
     }
     int GameOfLife::GetDimension(std::string filename, int dimension){
